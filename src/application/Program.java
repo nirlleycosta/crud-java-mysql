@@ -8,12 +8,20 @@ import model.entities.Seller;
 
 import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 public class Program {
     public static void main(String[] args) {
 
         /*testing connection and classes from model.entities
-        Connection conn = DB.getConnection();*/
+        Connection conn = DB.getConnection();
+       Department obj = new Department(1, "Books");
+        Seller seller = new Seller(21, "Bob", "bob@gmail.com", new Date(), 3000.0, obj);
+
+        SellerDao sellerDao = DaoFactory.createSellerDao();
+
+        System.out.println(obj);
+        System.out.println(seller);*/
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -21,13 +29,16 @@ public class Program {
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
 
-       /* Department obj = new Department(1, "Books");
-        Seller seller = new Seller(21, "Bob", "bob@gmail.com", new Date(), 3000.0, obj);
+        System.out.println("=== TEST 2: seller findByDepartment ====");
+        Department department = new Department(2, null);
+        List<Seller> list = sellerDao.findByDepartment(department);
+        for (Seller obj : list) {
+            //Para cada objeto tipo Seller na minha List list, eu vou mandar imprimir o objeto tipo Seller
+            System.out.println(obj);
 
-        SellerDao sellerDao = DaoFactory.createSellerDao();
+        }
 
-        System.out.println(obj);
-        System.out.println(seller);*/
+
 
         DB.closeConnection();
     }
