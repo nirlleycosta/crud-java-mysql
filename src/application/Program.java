@@ -37,7 +37,13 @@ public class Program {
             System.out.println(obj);
 
         }
+        System.out.println("=== TEST 3: seller findByAll ====");
+        list = sellerDao.findAll();
+        for (Seller obj : list) {
+            //Para cada objeto tipo Seller na minha List list, eu vou mandar imprimir o objeto tipo Seller
+            System.out.println(obj);
 
+        }
 
 
         DB.closeConnection();
