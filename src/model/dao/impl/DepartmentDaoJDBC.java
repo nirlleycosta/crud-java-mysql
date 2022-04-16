@@ -2,6 +2,7 @@ package model.dao.impl;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
@@ -54,7 +55,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
         try {
             st = conn.prepareStatement(
-                    "UPDATE seller " +
+                    "UPDATE department " +
                             "SET Name = ? " +
                             "WHERE Id = ?");
 
@@ -80,7 +81,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
             st.executeUpdate();
         } catch (SQLException e) {
-            throw new DbException(e.getMessage());
+            throw new DbIntegrityException(e.getMessage());
         } finally {
             DB.closeStatement(st);
         }
@@ -92,7 +93,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
         ResultSet rs = null;
         try {
             st = conn.prepareStatement(
-                    "SELECT * FROM departmento WHERE Id = ?");
+                    "SELECT * FROM department WHERE Id = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()) {
