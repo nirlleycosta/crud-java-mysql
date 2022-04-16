@@ -47,8 +47,7 @@ public class DB {
             Properties props = new Properties();
             props.load(fs);
             return props;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new DbException(e.getMessage());
         }
 
