@@ -1,3 +1,0 @@
-# Crud JDBC with MySQL
-
-The documentation will be available soon in a blog post...
